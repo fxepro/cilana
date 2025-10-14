@@ -68,7 +68,7 @@ This document outlines the changes made to deploy the Cilana website to GitHub P
 6. ✅ Enabled GitHub Pages with GitHub Actions source
 
 ### Final Result:
-- **Live URL**: `https://xmash.github.io/cilana`
+- **Live URL**: `https://[username].github.io/[repository-name]`
 - **Build Status**: Automated on every push to main
 - **Features**: Modern design, responsive layout, client-side interactions
 
@@ -120,7 +120,7 @@ If you want to restore AI functionality, consider:
 
 **Deployment Date**: December 2024  
 **Status**: ✅ Live and functional  
-**URL**: https://xmash.github.io/cilana
+**URL**: https://fxepro.github.io/cilana
 
 
 What I Fixed:
