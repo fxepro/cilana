@@ -2,6 +2,8 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   output: 'export',
+  basePath: isProd ? '/cilana' : '',
+  assetPrefix: isProd ? '/cilana/' : '',
   trailingSlash: true,
   images: {
     unoptimized: true,
