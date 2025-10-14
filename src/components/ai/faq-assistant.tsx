@@ -1,17 +1,15 @@
 "use client";
 
-import { useState, useTransition } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { getFaqAnswer } from '@/actions/ai'; // Server Action
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
-import type { CilanaFaqAssistantOutput } from '@/ai/flows/cilana-faq-assistant';
 
 const faqSchema = z.object({
   question: z.string().min(10, { message: "Please ask a more detailed question (min 10 characters)." }).max(500),
@@ -20,7 +18,7 @@ const faqSchema = z.object({
 type FaqFormData = z.infer<typeof faqSchema>;
 
 export default function FaqAssistant() {
-  const [isPending, startTransition] = useTransition();
+  const [isPending, setIsPending] = useState(false);
   const [answer, setAnswer] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,14 +32,24 @@ export default function FaqAssistant() {
   const onSubmit = (data: FaqFormData) => {
     setAnswer(null);
     setError(null);
-    startTransition(async () => {
-      const result = await getFaqAnswer({ question: data.question });
-      if ('error' in result) {
-        setError(result.error);
-      } else {
-        setAnswer(result.answer);
-      }
-    });
+    setIsPending(true);
+    
+    // Simulate AI response for static export
+    setTimeout(() => {
+      setIsPending(false);
+      setAnswer(`Thank you for your question: "${data.question}". 
+
+For a comprehensive answer about Cilana's technology, security features, and development roadmap, please visit our detailed documentation or contact our team directly. We're constantly updating our platform with new features and improvements.
+
+Key areas we can help with:
+• Technical specifications and architecture
+• Security and consensus mechanisms  
+• Developer tools and APIs
+• Integration guides and best practices
+• Community and partnership opportunities
+
+Feel free to explore our Resources section for more detailed information.`);
+    }, 1500);
   };
 
   return (
