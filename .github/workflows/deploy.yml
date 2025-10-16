@@ -28,6 +28,8 @@ jobs:
       - name: Build static site
         run: |
           npm run build
+          ls -la
+          mkdir -p out
           echo "" > out/.nojekyll
           
 
