@@ -27,9 +27,9 @@ jobs:
 
       - name: Build static site
         run: |
-          npx cross-env GITHUB_PAGES=false npm run build
-          mkdir -p out
-          touch out/.nojekyll
+          npm run build
+          echo "" > out/.nojekyll
+          
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
