@@ -28,6 +28,7 @@ jobs:
       - name: Build static site
         run: |
           npx cross-env GITHUB_PAGES=false npm run build
+          mkdir -p out
           touch out/.nojekyll
 
       - name: Deploy to GitHub Pages
